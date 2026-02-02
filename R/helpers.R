@@ -8,9 +8,11 @@
 get_building_download_url <- function(state = unique(tigris::fips_codes$state), version){
   state <- match.arg(state)
   stopifnot(version %in% c(1,2))
+  if(version == 1) stop("Version 1 data no longer available."). 
+  
   base <- dplyr::case_when(
     version == 1L ~ 'https://usbuildingdata.blob.core.windows.net/usbuildings-v1-1/',
-    version == 2L ~ 'https://usbuildingdata.blob.core.windows.net/usbuildings-v2/',
+    version == 2L ~ 'https://minedbuildings.z5.web.core.windows.net/legacy/usbuildings-v2/',
     TRUE ~ NA_character_
   )
   ext <- dplyr::case_when(
